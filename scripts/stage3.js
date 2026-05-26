@@ -36,7 +36,11 @@ function renderStage3(app) {
           </div>
           <div>
             <div class="date-card-label">When</div>
-            <div class="date-card-value" id="dc-when">TBD — something wonderful</div>
+            <div class="date-card-value" id="dc-when">
+              ${STATE.selectedDate && STATE.selectedTime
+                ? `${formatDate(STATE.selectedDate)} at ${STATE.selectedTime}`
+                : 'TBD — something wonderful'}
+            </div>
           </div>
         </div>
 
@@ -167,9 +171,13 @@ function renderAnswers() {
       return q && opt ? `**${q.text}**\n> ${opt.label}` : null;
     }).filter(Boolean).join('\n\n');
 
+    const dateStr = STATE.selectedDate && STATE.selectedTime
+      ? `${formatDate(STATE.selectedDate)} at ${STATE.selectedTime}`
+      : 'not selected';
+
     const payload = {
       username: 'Babito Quiz',
-      content: `Babito completed the quiz!\n\n${lines}\n\nShe said YES to the date.`,
+      content: `Babito said YES!\n\n${lines}\n\n**She picked a date:** ${dateStr}`,
     };
 
     fetch(DISCORD_WEBHOOK_URL, {

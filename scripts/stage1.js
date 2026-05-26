@@ -40,6 +40,14 @@ function renderQuestion(app, idx) {
   const pct = Math.round(((idx) / QUESTIONS.length) * 100);
 
   app.innerHTML = `
+    ${idx > 0 ? `
+      <button class="back-btn" id="back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back
+      </button>` : ''}
+
     <div class="quiz-wrap anim-card-enter">
       <div class="card">
         <div class="question-meta">
@@ -61,6 +69,15 @@ function renderQuestion(app, idx) {
       </div>
     </div>
   `;
+
+  /* Back button */
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      STATE.answers.pop(); /* remove last answer */
+      renderQuestion(app, idx - 1);
+    });
+  }
 
   /* Animate progress fill */
   setTimeout(() => {

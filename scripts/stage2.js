@@ -329,7 +329,7 @@ function yesConfirmed() {
   const rect = yesBtnEl ? yesBtnEl.getBoundingClientRect() : { left: window.innerWidth/2, top: window.innerHeight/2 };
   miniBurst(rect.left + rect.width/2, rect.top + rect.height/2, 28);
 
-  setTimeout(() => goToStage(3), 900);
+  setTimeout(() => showDatePicker(), 900);
 }
 
 function setHint(text) {

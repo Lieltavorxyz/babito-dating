@@ -9,6 +9,8 @@ const STATE = {
   answers:       [],   /* indices of selected options per question */
   yesAttempts:   0,
   noTeleports:   0,
+  selectedDate:  null, /* Date object — set by date picker */
+  selectedTime:  null, /* string e.g. '7:00 PM' — set by date picker */
 };
 
 function goToStage(n) {
