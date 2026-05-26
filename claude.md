@@ -27,7 +27,7 @@ Goal: make her laugh, frustrate her lovingly, end in a "Yes" to a date.
 | `--text` | `#3b1f2b` (deep plum) |
 | `--text-muted` | `#9d6b7e` (dusty rose) |
 | Font body | `'Nunito', sans-serif` |
-| Font display | `'Pacifico', cursive` |
+| Font display | `'Fredoka', sans-serif` (rounded, playful, readable — replaces Pacifico) |
 | Border radius | 24px cards, 50px buttons |
 | Shadow | `0 8px 32px rgba(244,114,182,0.2)` |
 
