@@ -314,6 +314,13 @@
   color: var(--text);
 }
 
+.date-card-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
 .share-btn-wrap {
   margin-top: 8px;
   opacity: 0;
@@ -501,6 +508,77 @@
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(244,114,182,0.35);
 }
+
+/* ── Activity Cards ─────────────────────────────── */
+.activity-section { transition: opacity 250ms ease; }
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  background: var(--surface-2);
+  border: 2px solid rgba(244,114,182,0.15);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  touch-action: manipulation;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+.activity-card:hover {
+  background: var(--surface-3);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.activity-card.selected {
+  background: linear-gradient(135deg, rgba(244,114,182,0.12), rgba(192,132,252,0.12));
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(244,114,182,0.2);
+}
+.activity-card.activity-evil {
+  border-style: dashed;
+  border-color: rgba(192,132,252,0.3);
+}
+.activity-card.activity-evil:hover,
+.activity-card.activity-evil.selected {
+  border-style: solid;
+  border-color: var(--accent-2);
+  background: linear-gradient(135deg, rgba(192,132,252,0.12), rgba(244,114,182,0.12));
+}
+
+.activity-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.activity-evil .activity-icon { color: var(--accent-2); }
+
+.activity-label {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.activity-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* dp-section: shared fade-in wrapper */
+.dp-section { margin-bottom: 16px; }
 
 /* ── Responsive adjustments ────────────────────── */
 @media (max-width: 600px) {
