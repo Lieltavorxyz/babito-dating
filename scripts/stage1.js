@@ -28,6 +28,15 @@ const QUESTIONS = [
       { label: '4 — I was born ready',   duck: 'celebrate', anim: 'anim-duck-spin',   speech: 'Respect.' },
     ],
   },
+  {
+    text: 'Do you want a Shablah tomorrow morning?',
+    options: [
+      { label: 'Yes, obviously',          duck: 'celebrate', anim: 'anim-duck-bounce', speech: 'Correct.' },
+      { label: 'Yes but make it spicy',   duck: 'celebrate', anim: 'anim-duck-spin',   speech: 'Noted. Very noted.' },
+      { label: 'Only if you make it',     duck: 'happy',     anim: 'anim-duck-waddle', speech: 'Deal.' },
+      { label: 'No thanks',              duck: 'shocked',   anim: 'anim-duck-shake',  speech: 'Excuse me?!' },
+    ],
+  },
 ];
 
 function renderStage1(app) {

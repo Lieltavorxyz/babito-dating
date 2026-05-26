@@ -30,7 +30,7 @@ function renderStage0(app) {
       </button>
 
       <p class="text-muted" style="animation: fade-in 600ms ease 900ms both; font-size:0.8rem;">
-        3 questions stand between you and destiny
+        4 questions stand between you and destiny
       </p>
     </div>
   `;
