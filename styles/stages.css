@@ -29,7 +29,8 @@
 }
 
 .intro-subtitle {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-weight: 700;
   font-size: clamp(1.4rem, 3.5vw, 2.2rem);
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
@@ -193,7 +194,7 @@
   border-radius: 50px;
   padding: 14px 36px;
   cursor: pointer;
-  background: linear-gradient(135deg, #f472b6, #c084fc);
+  background: var(--gradient-main);
   color: white;
   box-shadow: 0 4px 20px rgba(244,114,182,0.4);
   transition: transform 120ms ease;
@@ -449,7 +450,7 @@
   color: var(--accent);
 }
 .cal-day.cal-selected {
-  background: linear-gradient(135deg, #f472b6, #c084fc);
+  background: var(--gradient-main);
   color: white;
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(244,114,182,0.4);
@@ -495,7 +496,7 @@
   background: var(--surface-3);
 }
 .time-pill.selected {
-  background: linear-gradient(135deg, #f472b6, #c084fc);
+  background: var(--gradient-main);
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(244,114,182,0.35);

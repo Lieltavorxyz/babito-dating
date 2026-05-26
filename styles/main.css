@@ -1,19 +1,23 @@
 /* ── Design Tokens ─────────────────────────────── */
 :root {
-  --bg:         #fdf4f8;
-  --surface:    #fff0f5;
-  --surface-2:  #ffe4f0;
-  --surface-3:  #ffd6e7;
-  --accent:     #f472b6;
-  --accent-2:   #c084fc;
-  --accent-3:   #86efac;
-  --gold:       #fbbf24;
-  --text:       #3b1f2b;
-  --text-muted: #9d6b7e;
-  --shadow:     0 8px 32px rgba(244,114,182,0.18);
-  --shadow-lg:  0 16px 48px rgba(244,114,182,0.28);
-  --radius:     24px;
-  --radius-btn: 50px;
+  --bg:           #fdf4f8;
+  --surface:      #fff0f5;
+  --surface-2:    #ffe4f0;
+  --surface-3:    #ffd6e7;
+  --accent:       #f472b6;
+  --accent-light: #f9a8d4;
+  --accent-2:     #c084fc;
+  --accent-3:     #86efac;
+  --gold:         #fbbf24;
+  --gold-dark:    #f59e0b;
+  --text:         #3b1f2b;
+  --text-muted:   #9d6b7e;
+  --shadow:       0 8px 32px rgba(244,114,182,0.18);
+  --shadow-lg:    0 16px 48px rgba(244,114,182,0.28);
+  --radius:       24px;
+  --radius-btn:   50px;
+  --gradient-main: linear-gradient(135deg, var(--accent), var(--accent-2));
+  --gradient-gold: linear-gradient(135deg, var(--gold), var(--gold-dark));
 }
 
 /* ── Reset ─────────────────────────────────────── */
@@ -101,7 +105,7 @@ body {
 .btn:active { transform: scale(0.96); }
 
 .btn-yes {
-  background: linear-gradient(135deg, #f472b6, #c084fc);
+  background: var(--gradient-main);
   color: white;
   box-shadow: 0 4px 20px rgba(244,114,182,0.4);
 }
@@ -112,12 +116,12 @@ body {
 .btn-no {
   background: var(--surface-2);
   color: var(--text-muted);
-  border: 2px solid #f9a8d4;
+  border: 2px solid var(--accent-light);
   box-shadow: 0 2px 12px rgba(244,114,182,0.12);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #f472b6, #c084fc);
+  background: var(--gradient-main);
   color: white;
   box-shadow: 0 4px 20px rgba(244,114,182,0.4);
 }
@@ -136,7 +140,7 @@ body {
 
 /* Gold win state */
 .btn-yes.btn-win {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: var(--gradient-gold);
   box-shadow: 0 0 0 6px rgba(251,191,36,0.25), 0 8px 28px rgba(251,191,36,0.4);
   animation: gold-pulse 0.6s ease forwards;
 }
