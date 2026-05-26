@@ -1,0 +1,129 @@
+/* ── Entrances ─────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* ── Duck Animations ───────────────────────────── */
+@keyframes duck-waddle {
+  0%   { transform: rotate(-6deg) translateY(0);   }
+  25%  { transform: rotate(0deg)  translateY(-4px); }
+  50%  { transform: rotate(6deg)  translateY(0);   }
+  75%  { transform: rotate(0deg)  translateY(-4px); }
+  100% { transform: rotate(-6deg) translateY(0);   }
+}
+
+@keyframes duck-bounce {
+  0%, 100% { transform: translateY(0)    scale(1);    }
+  40%       { transform: translateY(-18px) scale(1.05); }
+  60%       { transform: translateY(-14px) scale(1.04); }
+}
+
+@keyframes duck-shake {
+  0%,100% { transform: translateX(0);    }
+  20%     { transform: translateX(-8px); }
+  40%     { transform: translateX(8px);  }
+  60%     { transform: translateX(-6px); }
+  80%     { transform: translateX(6px);  }
+}
+
+@keyframes duck-spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes duck-float {
+  0%,100% { transform: translateY(0);   }
+  50%     { transform: translateY(-8px); }
+}
+
+@keyframes duck-swim-across {
+  0%   { transform: translateX(-140px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 140px)); opacity: 0; }
+}
+
+@keyframes duck-pop-in {
+  0%   { transform: translateY(120px) scale(0.5); opacity: 0; }
+  60%  { transform: translateY(-12px) scale(1.1);  opacity: 1; }
+  80%  { transform: translateY(4px)   scale(0.97);             }
+  100% { transform: translateY(0)     scale(1);                }
+}
+
+@keyframes duck-disapprove {
+  0%,100% { transform: rotate(0deg);  }
+  30%     { transform: rotate(-15deg); }
+  60%     { transform: rotate(15deg);  }
+}
+
+/* ── Button Animations ─────────────────────────── */
+@keyframes btn-pulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(244,114,182,0.4); transform: scale(1); }
+  50%     { box-shadow: 0 8px 36px rgba(244,114,182,0.6); transform: scale(1.03); }
+}
+
+@keyframes gold-pulse {
+  0%  { box-shadow: 0 0 0 0   rgba(251,191,36,0.6); transform: scale(1); }
+  50% { box-shadow: 0 0 0 16px rgba(251,191,36,0);  transform: scale(1.12); }
+  100%{ box-shadow: 0 0 0 0   rgba(251,191,36,0);   transform: scale(1); }
+}
+
+@keyframes clone-fade {
+  from { opacity: 1; transform: scale(1);    }
+  to   { opacity: 0; transform: scale(0.75); }
+}
+
+/* ── Decorative ────────────────────────────────── */
+@keyframes float-slow {
+  0%,100% { transform: translateY(0)   rotate(-2deg); }
+  50%     { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes heart-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%,100% { transform: scale(0) rotate(0deg);   opacity: 0; }
+  50%     { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes victory-text {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── Utility Animation Classes ─────────────────── */
+.anim-fade-in     { animation: fade-in     400ms ease forwards; }
+.anim-card-enter  { animation: card-enter  400ms ease forwards; }
+.anim-slide-up    { animation: slide-up    400ms ease forwards; }
+.anim-duck-bounce { animation: duck-bounce 700ms ease infinite; }
+.anim-duck-waddle { animation: duck-waddle 600ms ease-in-out infinite; }
+.anim-duck-float  { animation: duck-float  3s ease-in-out infinite; }
+.anim-duck-shake  { animation: duck-shake  500ms ease; }
+.anim-duck-spin   { animation: duck-spin   600ms ease; }
+.anim-btn-pulse   { animation: btn-pulse   2s ease-in-out infinite; }
+.anim-clone-fade  { animation: clone-fade  400ms ease forwards; }

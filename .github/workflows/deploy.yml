@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate HTML exists
+        run: |
+          if [ ! -f index.html ]; then
+            echo "ERROR: index.html not found at repo root"
+            exit 1
+          fi
+          echo "index.html found — OK"
+
+      - name: Validate JS files
+        run: |
+          for f in scripts/app.js scripts/stage0.js scripts/stage1.js scripts/stage2.js scripts/stage3.js scripts/ducks.js scripts/confetti.js; do
+            if [ ! -f "$f" ]; then
+              echo "ERROR: $f not found"
+              exit 1
+            fi
+          done
+          echo "All script files present — OK"
+
+      - name: Validate CSS files
+        run: |
+          for f in styles/main.css styles/animations.css styles/stages.css; do
+            if [ ! -f "$f" ]; then
+              echo "ERROR: $f not found"
+              exit 1
+            fi
+          done
+          echo "All style files present — OK"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
