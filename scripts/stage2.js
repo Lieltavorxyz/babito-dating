@@ -9,7 +9,8 @@ function renderStage2(app) {
   app.className = 'stage-2';
   STATE.yesAttempts  = 0;
   STATE.noTeleports  = 0;
-  cloneEls = [];
+  cloneEls   = [];
+  yesEvading = false;
 
   app.innerHTML = `
     <div class="proposal-wrap">
@@ -126,11 +127,7 @@ function onYesHover() {
 }
 
 function onYesTouch(e) {
-  if (STATE.yesAttempts >= 2 && cloneEls.length === 0) {
-    /* Attempt 3+ on touch: let the modal show */
-    return;
-  }
-  e.preventDefault();
+  e.preventDefault(); /* always block synthetic events */
   if (yesEvading) return;
   yesEvading = true;
   STATE.yesAttempts++;
@@ -191,8 +188,9 @@ function yesCloneSplit() {
   setHint('Pick the right one...');
   duckReact(proposalDuckZone, 'shocked', 'Oh no.', 'anim-duck-shake');
 
-  /* Hide original */
-  yesBtnEl.style.visibility = 'hidden';
+  /* Hide original — pointer-events:none prevents ghost touches on the hidden button */
+  yesBtnEl.style.visibility    = 'hidden';
+  yesBtnEl.style.pointerEvents = 'none';
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
@@ -267,7 +265,10 @@ function showCloneTooltip(text, x, y) {
 function clearClones() {
   cloneEls.forEach(c => c.remove());
   cloneEls = [];
-  if (yesBtnEl) yesBtnEl.style.visibility = 'visible';
+  if (yesBtnEl) {
+    yesBtnEl.style.visibility    = 'visible';
+    yesBtnEl.style.pointerEvents = '';
+  }
 }
 
 /* Attempt 3+ — Modal */

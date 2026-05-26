@@ -77,6 +77,11 @@ function renderStage3(app) {
         </div>
       </div>
 
+      <div class="date-card" id="answers-card" style="animation: card-enter 500ms ease 1800ms both; border-color: rgba(192,132,252,0.3);">
+        <div class="date-card-title" style="color: var(--accent-2)">Her answers</div>
+        <div id="answers-list"></div>
+      </div>
+
       <div class="share-btn-wrap">
         <button class="btn btn-primary" id="share-btn">Share the joy</button>
         <div class="share-confirm" id="share-confirm"></div>
@@ -92,10 +97,11 @@ function renderStage3(app) {
     const el = document.getElementById(`vd-${i}`);
     if (!el) return;
     renderDuck(el, duckStates[i], sizes[i]);
-    const dw = el.querySelector('.duck-wrap');
-    if (dw) {
-      if (i === 0) dw.style.transform = 'scaleX(-1)';
-      if (i === 2) dw.style.transform = 'scaleX(1)';
+    /* Flip via SVG not wrap — bounce anim uses transform on wrap, would clobber scaleX */
+    const svg = el.querySelector('svg');
+    if (svg) {
+      if (i === 0) svg.style.transform = 'scaleX(1)';   /* left duck faces right (toward center) */
+      if (i === 2) svg.style.transform = 'scaleX(-1)';  /* right duck faces left (toward center) */
     }
     setTimeout(() => {
       el.classList.add('popped-in');
@@ -103,6 +109,9 @@ function renderStage3(app) {
       if (duckWrap) duckWrap.classList.add('anim-duck-bounce');
     }, i * 180);
   });
+
+  /* Render her quiz answers */
+  renderAnswers();
 
   /* Big confetti burst */
   launchConfetti(110);
@@ -123,4 +132,50 @@ function renderStage3(app) {
 
   /* Second confetti wave after 3s */
   setTimeout(() => launchConfetti(60), 3200);
+}
+
+function renderAnswers() {
+  const list = document.getElementById('answers-list');
+  if (!list || !STATE.answers.length) return;
+
+  const rows = STATE.answers.map((ansIdx, qIdx) => {
+    const q   = QUESTIONS[qIdx];
+    const opt = q ? q.options[ansIdx] : null;
+    if (!q || !opt) return '';
+    return `
+      <div class="date-card-row" style="align-items:flex-start">
+        <div class="date-card-icon" style="margin-top:3px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="date-card-label" style="color:var(--accent-2)">${q.text}</div>
+          <div class="date-card-value" style="font-size:0.88rem">${opt.label}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  list.innerHTML = rows;
+
+  /* Optional: POST to Discord webhook if configured */
+  if (typeof DISCORD_WEBHOOK_URL === 'string' && DISCORD_WEBHOOK_URL.startsWith('http')) {
+    const lines = STATE.answers.map((ansIdx, qIdx) => {
+      const q   = QUESTIONS[qIdx];
+      const opt = q && q.options[ansIdx];
+      return q && opt ? `**${q.text}**\n> ${opt.label}` : null;
+    }).filter(Boolean).join('\n\n');
+
+    const payload = {
+      username: 'Babito Quiz',
+      content: `Babito completed the quiz!\n\n${lines}\n\nShe said YES to the date.`,
+    };
+
+    fetch(DISCORD_WEBHOOK_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    }).catch(() => { /* silently ignore — not critical */ });
+  }
 }

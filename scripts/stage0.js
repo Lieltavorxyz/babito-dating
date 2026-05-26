@@ -50,8 +50,8 @@ function renderStage0(app) {
   if (leftEl)  renderDuck(leftEl,  'idle', 64);
   if (rightEl) {
     renderDuck(rightEl, 'happy', 64);
-    const dw = rightEl.querySelector('.duck-wrap');
-    if (dw) dw.style.transform = 'scaleX(-1)';
+    const svg = rightEl.querySelector('svg');
+    if (svg) svg.style.transform = 'scaleX(-1)'; /* flip SVG not wrap — avoids conflict with anim transforms */
   }
 
   /* Waddle the left duck gently */

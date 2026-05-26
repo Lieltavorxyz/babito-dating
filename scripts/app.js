@@ -1,11 +1,14 @@
 /* app.js — State machine + stage router (load last) */
 
+/* ── Config — fill in your Discord webhook URL to receive her answers ── */
+const DISCORD_WEBHOOK_URL = '';  /* e.g. 'https://discord.com/api/webhooks/...' */
+
 const STATE = {
-  stage:        0,
+  stage:         0,
   questionIndex: 0,
-  answers:      [],
-  yesAttempts:  0,
-  noTeleports:  0,
+  answers:       [],   /* indices of selected options per question */
+  yesAttempts:   0,
+  noTeleports:   0,
 };
 
 function goToStage(n) {
