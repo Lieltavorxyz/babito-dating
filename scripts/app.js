@@ -1,7 +1,7 @@
 /* app.js — State machine + stage router (load last) */
 
 /* ── Config — fill in your Discord webhook URL to receive her answers ── */
-const DISCORD_WEBHOOK_URL = '';  /* e.g. 'https://discord.com/api/webhooks/...' */
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1508856372379254785/Rpjs4LMVO8J4R-_ajyFBWOtLMHiMmJxeDHnpAIU3TNE9YHq2FmtejyuQFEe77MKLYtJY';
 
 const STATE = {
   stage:         0,
